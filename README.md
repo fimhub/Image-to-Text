@@ -29,3 +29,6 @@
     Scope: Basic CNN for classification, basic RNN for generating meaningful text?
 
 
+Link to Heroku: https://mysterious-river-00331.herokuapp.com/
+
+
