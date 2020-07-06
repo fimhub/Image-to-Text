@@ -1,7 +1,6 @@
 # Image-to-Text
-# Image-to-Text
 
-Tasks + Breakdown
+    Tasks + Breakdown
     Frontend (Talis)
     Github repo starting
 
@@ -10,22 +9,23 @@ Tasks + Breakdown
 
     Model (Steven)
     Process book
-Timeline
-Setup (1 week)
 
-Github, initial heroku push, process book setup, planning weekly meeting[Thursdays 5PM EDT], Milestone 1 submitted
-Planning
+    Timeline
+    Setup (1 week)
 
-Goal: ‘Develop Image to Text model that functions on mobile’
-Evaluate cleaned datasets for more confident project selection
+    Github, initial heroku push, process book setup, planning weekly meeting[Thursdays 5PM EDT], Milestone 1 submitted
+    Planning
 
-Execution
-Heroku
-AWS
+    Goal: ‘Develop Image to Text model that functions on mobile’
+    Evaluate cleaned datasets for more confident project selection
 
-Scope: uploading photo to AWS, sending text back to initial user
-Flask
-ML models
-Scope: Basic CNN for classification, basic RNN for generating meaningful text?
+    Execution
+    Heroku
+    AWS
+
+    Scope: uploading photo to AWS, sending text back to initial user
+    Flask
+    ML models
+    Scope: Basic CNN for classification, basic RNN for generating meaningful text?
 
 
