@@ -6,16 +6,86 @@
             <meta name="viewport"
                   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Lab 2</title>
+            <title>Milestone 2</title>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
             <!-- Styles -->
             <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
-        </head>
-<body>
-    <h1>Image to Text - Team 3</h1>
 
-</body>
+            <!-- JS -->
+            <script src="{{ url_for('static', filename='./js/d3.js') }}"></script>
+
+            <script src="{{ url_for('static', filename='./js/main.js') }}"></script>
+            <script src="{{ url_for('static', filename='./js/bars.js') }}"></script>
+
+
+        </head>
+        <body>
+
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                  </button>
+                  <a class="navbar-brand" href="#">Team 3</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Team</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+              
+            <div class="container-fluid text-center">    
+              <div class="row content">
+                <div class="col-sm-2 sidenav">
+                </div>
+                <div class="col-sm-8 text-left"> 
+                <div class="container">
+                    <img src="/static/img/house.jpg" alt="Notebook" style="width:100%;">
+                    <div class="content">
+                        <h1>Image-to-Text</h1>
+                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.</p>
+                    </div>
+                </div>
+                
+                  <hr>
+                  <div class="center">
+
+                    <div class="split left">
+                      <div class="centered">
+                        <h3>Import Image</h3>
+                        <input class=" center" type="file" id="myFile" name="filename">
+                        <input class="btn" type="submit">
+                      </div>
+                    </div>
+                    
+                    <div class="split right">
+                      <div class="centered">
+                        <h2>TEXT HERE</h2>
+                        <div id="vis1" class="vis"></div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                  <hr>
+
+                </div>
+                <div class="col-sm-2 sidenav">
+                </div>
+                </div>
+              </div>
+            </div>
+            
+            </body>
 
 </html>
