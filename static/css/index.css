@@ -1,84 +1,183 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-    background-color: #555;
-    color: white;
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
     padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {height:auto;} 
-    }
+  }
+  .row.content {height:auto;}
+}
 
-.btn {
-    background-color: #f4511e;
-    border: none;
-    color: white;
-    padding: 16px 32px;
+.card {
     text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
+    font-size: 15px;
+    margin-right: 5%;
+    border-radius: 5px;
+    font-family: monospace;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,4);
     transition: 0.3s;
+
 }
 
-.btn:hover {opacity: 1}
-
-.center {
-    margin: auto;
-    width: 60%;
-    padding: 10px;
-    text-align: center;
+#subcat {
+  font-size: 13px;
+  margin-left: 8%;
 }
 
-* {
-    box-sizing: border-box;
+h1 {
+
+  font-family: monospace;
+}
+
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: black;
+    font-weight: 400;
+    margin-bottom: 30px;
   }
-  
-  body {
-    font-family: Arial;
-    font-size: 17px;
+
+  .jumbotron {
+    background-color: #5BA7C9;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
   }
-  
-  .container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+  .container-fluid {
+    padding: 60px 50px;
   }
-  
-  .container img {vertical-align: middle;}
-  
-  .container .content {
-    position: absolute;
-    bottom: 0;
-    background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-    color: #f1f1f1;
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color: #5BA7C9;
+    font-size: 50px;
+  }
+  .logo {
+    color: #5BA7C9;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
     width: 100%;
-    padding: 20px;
+    height: 100%;
+    margin-bottom: 10px;
   }
 
-  /* Split the screen in half */
+  .item span {
+    font-style: normal;
+  }
+
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+    border: 1px solid #5BA7C9;
+    background-color: #fff !important;
+    color: #5BA7C9;
+  }
+  .panel-heading {
+    color: #fff !important;
+    background-color: #5BA7C9 !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #5BA7C9;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    background-color: #5BA7C9;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #5BA7C9 !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #5BA7C9;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+
+    /* Split the screen in half */
 .split {
   height: 100%;
   width: 50%;
