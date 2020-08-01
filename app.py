@@ -1,18 +1,17 @@
-# set FLASK_APP=app.py
-# set FLASK_ENV=development
-# python -m flask run
-
 from dotenv import load_dotenv
 from flask import Flask, flash, render_template, request, url_for, redirect, jsonify, session
+from models.models import Db, User, Condo, Photo
 from forms.forms import SignupForm, LoginForm, NewpostForm
-# from models.models import Db, User, Condo, Photos
 from os import environ
 from passlib.hash import sha256_crypt
 
+load_dotenv('.env')
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:HCMCTWAG@1@localhost/img2txt_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 's14a-key'
-# Db.init_app(app)
+app.secret_key = environ.get('SECRET_KEY')
+Db.init_app(app)
 
 
 @app.route('/')

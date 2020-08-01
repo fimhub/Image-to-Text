@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Bulti\WebDev\s14a\project_team3\project_t3"
+VIRTUAL_ENV="C:\Users\Bulti\WebDev\s14a\Image-to-Text\project_t3"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -1,6 +1,10 @@
 
 
 /* On small screens, set height to 'auto' for sidenav and grid */
+body {
+  background-color: red;;
+}
+
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
