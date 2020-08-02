@@ -3,6 +3,7 @@
 
 import psycopg2
 import pandas as pd
+from psycopg2.extras import Json
 
 conn = psycopg2.connect(
     "host=localhost dbname=img2txt_db user=postgres password=HCMCTWAG@1")
@@ -39,14 +40,12 @@ conn.commit()
 cur.execute('''CREATE TABLE photos (
     pid SERIAL PRIMARY KEY NOT NULL,
     mlsnum INTEGER,    
-    imgnum INTEGER);''')
-
+    imgnum INTEGER,
+    features JSONB);''')
 conn.commit()
 
 
-df_listings = pd.read_csv("./data/condos.zip",
-                        index_col=False, dtype={'ZIP': str})
-
+df_listings = pd.read_csv("./data/condos.zip", index_col=False, dtype={'ZIP': str})
 for idx, u in df_listings.iterrows():
     # Data cleaning
     try:
@@ -71,5 +70,14 @@ for idx, u in df_listings.iterrows():
     except:
         print("Exception", u.MLSNUM)
     conn.commit()
+
+df_condos = pd.read_csv("./data/condo_images.csv", index_col=False)
+for idx, u in df_condos.iterrows():
+    q = cur.execute(
+        '''INSERT INTO photos (mlsnum, imgnum, features) VALUES (%s,%s,%s)''',
+        (u.MLSNUM, u.IMGNUM, Json(u.FEATURES))
+    )
+    conn.commit()
+
 cur.close()
 conn.close()

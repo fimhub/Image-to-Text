@@ -1,8 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from sqlalchemy.dialects.postgresql import HSTORE
 
 Db = SQLAlchemy()
-
 
 class User(Db.Model):
     __tablename__ = 'users'
@@ -34,4 +33,4 @@ class Photo(Db.Model):
     pid = Db.Column(Db.Integer, primary_key=True, autoincrement=True)
     mlsnum = Db.Column(Db.Integer, nullable=False)
     imgnum = Db.Column(Db.Integer, nullable=False)
-    features = Db.Column(Db.String, nullable=False)
+    features = Db.Column(HSTORE, nullable=False)
