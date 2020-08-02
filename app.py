@@ -4,6 +4,7 @@ from models.models import Db, User, Condo, Photo
 from forms.forms import SignupForm, LoginForm, NewpostForm
 from os import environ
 from passlib.hash import sha256_crypt
+from utils.py import *
 
 load_dotenv('.env')
 
@@ -112,3 +113,51 @@ def newimage():
     # If GET
     else:
         return render_template('newimage.html', title='Newpost', form=form)
+
+@app.route('/search', methods=['POST'])
+def search():
+    if 'photo' not in request.files:
+        flash('Please upload a valid image file')
+        return redirect(url_for('index'))
+    photo = request.files['photo']
+    if not allowed_file(photo.filename):
+        flash('Please upload a valid image file')
+        return redirect(url_for('index'))
+    form = request.form
+    filtered = Condo.query
+    bedsMin = form['bedsMin']
+    bedsMax = form['bedsMax']
+    bathsMin = form['bathsMin']
+    bathsMax = form['bathsMax']
+    sqftMin = form['sqftMin']
+    sqftMax = form['sqftMax']
+    priceMin = form['priceMin']
+    priceMax = form['priceMax']
+    inputZip = form['inputZip']
+    if bedsMin <= bedsMax:
+        filtered = filtered.filter(Condo.beds.between(bedsMin, bedsMax))
+    if bathsMin <= bathsMax:
+        filtered = filtered.filter(Condo.baths.between(bathsMin, bathsMax))
+    if type(sqftMin) is int and type(sqftMax) is int and sqftMin <= sqftMax:
+        filtered = filtered.filter(Condo.sqft.between(sqftMin, sqftMax))
+    if type(priceMin) is int and type(priceMax) is int and priceMin <= priceMax:
+        filtered = filtered.filter(Condo.listprice.between(priceMin, priceMax))
+    if inputZip:
+        filtered = filtered.filter(Condo.zip==inputZip)
+    mlsnums = [condo.mlsnum for condo in filtered.limit(20).all()]
+    images = Photo.query.filter(Photo.mlsnum.in_(mlsnums)).all()
+    closest = findClosest(photo, images)
+    session['closest'] = closest
+    return redirect(url_for('results'))
+
+@app.route('/results')
+def results():
+    if not 'closest' in session:
+        return redirect(url_for('info'))
+    closest = session['closest']
+    condos = Condo.query.filter(Condo.mlsnum.in_(closest)).all()
+    if 'username' in session:
+        user = User.query.filter_by(username=session['username']).first()
+        return render_template('results.html', condos=condos, username=user.username)
+    else:
+        return render_template('results.html', condos=condos)

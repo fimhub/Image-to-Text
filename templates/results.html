@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+    <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+
+<section class="content-section">
+    <div class="container text-center">
+        <h1>Results</h1>
+        {% if condos|length > 0 %}
+        {% for condo in condos %}
+          <div class="row mb-3">
+              <div class="col-sm-3">
+              <img width=200 height=200 class="img-thumbnail" src="{{ condo.photourl }}">
+              </div>
+              <div class="col-sm-6 text-left">
+                 <h4> MLS number: {{ condo.mlsnum }}</h4>
+                  <p>Beds Number: {{ condo.beds }}<br>
+                  Baths Number: {{ condo.baths }}<br>
+                  Listing Price: ${{ condo.listprice }} </p>
+              </div>
+          </div>
+        {% endfor %}
+        {% else %}
+            <h3>No results. Please try different filters.</h3>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+{% endblock %}
