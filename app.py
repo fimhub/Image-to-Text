@@ -4,7 +4,7 @@ from models.models import Db, User, Condo, Photo
 from forms.forms import SignupForm, LoginForm, NewpostForm
 from os import environ
 from passlib.hash import sha256_crypt
-from utils.py import *
+from utils import *
 
 load_dotenv('.env')
 
@@ -113,16 +113,21 @@ def newimage():
     # If GET
     else:
         return render_template('newimage.html', title='Newpost', form=form)
+    
+@app.route('/search_page')
+def search_page():
+    return render_template('search.html')
 
-@app.route('/search', methods=['POST'])
+
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     if 'photo' not in request.files:
         flash('Please upload a valid image file')
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     photo = request.files['photo']
     if not allowed_file(photo.filename):
         flash('Please upload a valid image file')
-        return redirect(url_for('index'))
+        return redirect(url_for('register'))
     form = request.form
     filtered = Condo.query
     bedsMin = form['bedsMin']
@@ -153,7 +158,7 @@ def search():
 @app.route('/results')
 def results():
     if not 'closest' in session:
-        return redirect(url_for('info'))
+        return redirect(url_for('index'))
     closest = session['closest']
     condos = Condo.query.filter(Condo.mlsnum.in_(closest)).all()
     if 'username' in session:

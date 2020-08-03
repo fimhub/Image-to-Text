@@ -7,8 +7,12 @@ from keras.preprocessing import image
 from keras.applications.vgg16 import VGG16
 from keras.applications.vgg16 import preprocess_input
 import tensorflow as tf
+import tensorflow.python.keras.backend as K
+
+
+
 global graph
-graph = tf.get_default_graph()
+graph = K.get_graph()
 model = VGG16(weights='imagenet', include_top=False)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 def allowed_file(filename):

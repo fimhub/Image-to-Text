@@ -13,7 +13,7 @@ class User(Db.Model):
 class Condo(Db.Model):
     __tablename__ = "condos"
     uid = Db.Column(Db.Integer, primary_key=True, autoincrement=True)
-    mls_num = Db.Column(Db.Integer, nullable=False)
+    mlsnum = Db.Column(Db.Integer, nullable=False)
     beds = Db.Column(Db.Integer, nullable=False)
     baths = Db.Column(Db.Integer, nullable=False)
     sqft = Db.Column(Db.Integer, nullable=False)
