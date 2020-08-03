@@ -21,7 +21,7 @@ conn.commit()
 cur.execute(
     """CREATE TABLE condos (
     uid SERIAL PRIMARY KEY NOT NULL,
-    mls_num TEXT NOT NULL,
+    mlsnum TEXT NOT NULL,
     beds TEXT NOT NULL,
     baths TEXT NOT NULL,
     sqft TEXT NOT NULL,
@@ -50,9 +50,9 @@ for idx, u in df_listings.iterrows():
     # Data cleaning
     try:
         q = cur.execute(
-            """INSERT INTO condos (mls_num, beds, baths, sqft, age, lot_size, garage, list_price, sold_price, city, state, zip, photo_url) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+            """INSERT INTO condos (mlsnum, beds, baths, sqft, age, lot_size, garage, list_price, sold_price, city, state, zip, photo_url) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
             (
-                u.MLSNUM,
+                u.mlsnum,
                 u.BEDS,
                 u.BATHS,
                 u.SQFT,
@@ -68,14 +68,14 @@ for idx, u in df_listings.iterrows():
             ),
         )
     except:
-        print("Exception", u.MLSNUM)
+        print("Exception", u.mlsnum)
     conn.commit()
 
 df_condos = pd.read_csv("./data/condo_images.csv", index_col=False)
 for idx, u in df_condos.iterrows():
     q = cur.execute(
         '''INSERT INTO photos (mlsnum, imgnum, features) VALUES (%s,%s,%s)''',
-        (u.MLSNUM, u.IMGNUM, Json(u.FEATURES))
+        (u.mlsnum, u.IMGNUM, Json(u.FEATURES))
     )
     conn.commit()
 

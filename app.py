@@ -113,21 +113,25 @@ def newimage():
     # If GET
     else:
         return render_template('newimage.html', title='Newpost', form=form)
+    
+@app.route('/search_page')
+def search_page():
+    return render_template('search.html')
 
 
 @app.route('/search_page')
 def search_page():
     return render_template('search.html')
 
-@app.route('/search', methods=['POST', 'GET'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     if 'photo' not in request.files:
         flash('Please upload a valid image file')
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     photo = request.files['photo']
     if not allowed_file(photo.filename):
         flash('Please upload a valid image file')
-        return redirect(url_for('index'))
+        return redirect(url_for('register'))
     form = request.form
     filtered = Condo.query
     bedsMin = form['bedsMin']
