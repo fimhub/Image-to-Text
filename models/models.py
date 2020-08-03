@@ -1,5 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.dialects.postgresql import HSTORE
 
 Db = SQLAlchemy()
 
@@ -8,7 +7,6 @@ class User(Db.Model):
     uid = Db.Column(Db.Integer, primary_key=True, autoincrement=True)
     username = Db.Column(Db.String(64), unique=True, nullable=False)
     password = Db.Column(Db.String(128), nullable=False)
-
 
 class Condo(Db.Model):
     __tablename__ = "condos"
@@ -27,10 +25,9 @@ class Condo(Db.Model):
     zip = Db.Column(Db.String(64), nullable=False)
     photo_url = Db.Column(Db.String(64), nullable=False)
 
-
 class Photo(Db.Model):
     __tablename__ = 'photos'
     pid = Db.Column(Db.Integer, primary_key=True, autoincrement=True)
     mlsnum = Db.Column(Db.Integer, nullable=False)
     imgnum = Db.Column(Db.Integer, nullable=False)
-    features = Db.Column(HSTORE, nullable=False)
+    features = Db.Column(Db.String(64), nullable=False)
