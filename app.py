@@ -119,9 +119,6 @@ def search_page():
     return render_template('search.html')
 
 
-@app.route('/search_page')
-def search_page():
-    return render_template('search.html')
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
