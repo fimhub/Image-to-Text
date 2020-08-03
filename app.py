@@ -9,7 +9,8 @@ from utils import *
 load_dotenv('.env')
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:HCMCTWAG@1@localhost/img2txt_db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:HCMCTWAG@1@localhost/img2txt_db' for assaye's computer
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/img2text_db' # for bobby's computer
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = environ.get('SECRET_KEY')
 Db.init_app(app)
@@ -150,9 +151,9 @@ def search():
         filtered = filtered.filter(Condo.listprice.between(priceMin, priceMax))
     if inputZip:
         filtered = filtered.filter(Condo.zip==inputZip)
-    mlsnums = [condo.mlsnum for condo in filtered.limit(20).all()]
+    mlsnums = [condo.mlsnum for condo in filtered.limit(100).all()]
     images = Photo.query.filter(Photo.mlsnum.in_(mlsnums)).all()
-    closest = findClosest(photo, images)
+    closest = findClosest(photo.read(), images)
     session['closest'] = closest
     return redirect(url_for('results'))
 

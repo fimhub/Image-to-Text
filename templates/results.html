@@ -17,13 +17,13 @@
         {% for condo in condos %}
           <div class="row mb-3">
               <div class="col-sm-3">
-              <img width=200 height=200 class="img-thumbnail" src="{{ condo.photourl }}">
+              <img width=200 height=200 class="img-thumbnail" src="{{ condo.photo_url }}">
               </div>
               <div class="col-sm-6 text-left">
                  <h4> MLS number: {{ condo.mlsnum }}</h4>
                   <p>Beds Number: {{ condo.beds }}<br>
                   Baths Number: {{ condo.baths }}<br>
-                  Listing Price: ${{ condo.listprice }} </p>
+                  Listing Price: ${{ condo.list_price }} </p>
               </div>
           </div>
         {% endfor %}
@@ -32,5 +32,4 @@
         {% endif %}
     </div>
 </section>
-{% endblock %}
 {% endblock %}
