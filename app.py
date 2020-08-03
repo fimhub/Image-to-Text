@@ -126,7 +126,6 @@ def search():
         flash('Please upload a valid image file')
         return redirect(url_for('login'))
     photo = request.files['photo']
-    print('filename: ', photo.filename)
     if not allowed_file(photo.filename):
         flash('Please upload a valid image file')
         return redirect(url_for('register'))
@@ -153,8 +152,6 @@ def search():
         filtered = filtered.filter(Condo.zip==inputZip)
     mlsnums = [condo.mlsnum for condo in filtered.limit(100).all()]
     images = Photo.query.filter(Photo.mlsnum.in_(mlsnums)).all()
-    print(images)
-    print(mlsnums)
     closest = findClosest(photo.read(), images)
     session['closest'] = closest
     return redirect(url_for('results'))
@@ -165,7 +162,6 @@ def results():
         return redirect(url_for('index'))
     closest = session['closest']
     condos = Condo.query.filter(Condo.mlsnum.in_(closest)).all()
-    print(condos)
     if 'username' in session:
         user = User.query.filter_by(username=session['username']).first()
         return render_template('results.html', condos=condos, username=user.username)

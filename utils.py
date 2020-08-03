@@ -2,16 +2,16 @@ import numpy as np
 from numpy.linalg import norm
 from ast import literal_eval
 from operator import itemgetter
-#
 from keras.preprocessing import image
-from keras.applications.vgg16 import VGG16
-from keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications.vgg16 import preprocess_input
 import tensorflow as tf
 import tensorflow.python.keras.backend as K
 import cv2
 
 global graph
 graph = K.get_graph()
+
 model = VGG16(weights='imagenet', include_top=False)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
@@ -25,10 +25,11 @@ def processPhoto(photo):
     npimg = np.fromstring(photo, np.uint8)
     # convert numpy array to image
     img_data = cv2.imdecode(npimg, 1)
+    img_data = cv2.resize(img_data, (244, 244))
     img_data = np.expand_dims(img_data, axis=0)
     img_data = preprocess_input(img_data)
-    with graph.as_default():
-        features = model(img_data)
+
+    features = model.predict(img_data)
     return features
 
 # convert each dict of values back into an ndarray
@@ -44,14 +45,14 @@ def fromZeroes(data):
 
 #closest = iarray.map(image => comparison = {'mlsnum': image.mlsnum, 'closeness': norm(photo - fromZeroes(image.features))
 def findClosest(photo, iarray):
-    photo = processPhoto(photo)
+    features = processPhoto(photo)
     closest = []
     for image in iarray:
         comparison = {
             'mlsnum': image.mlsnum,
-            'closeness': norm(photo - fromZeroes(image.features))
+            'closeness': np.linalg.norm(features - fromZeroes(image.features))
         }
+        closest.append(comparison)
     closest.sort(key=itemgetter('closeness'))
-    print(closest)
     # only return the top five
     return [c['mlsnum'] for c in closest[:5]]

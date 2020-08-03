@@ -19,7 +19,7 @@ conn.commit()
 cur.execute(
     """CREATE TABLE condos (
     uid SERIAL PRIMARY KEY NOT NULL,
-    mlsnum TEXT NOT NULL,
+    mlsnum INTEGER NOT NULL,
     beds TEXT NOT NULL,
     baths TEXT NOT NULL,
     sqft TEXT NOT NULL,
@@ -44,7 +44,7 @@ conn.commit()
 
 
 # df_listings = pd.read_csv("./data/condos.zip", index_col=False, dtype={'ZIP': str})
-df_listings = pd.read_excel("./data/new_data/2016-17_condos_data.xlsx", index_col=False)
+df_listings = pd.read_excel("./data/2000_condo_features.xlsx", index_col=False)
 for idx, u in df_listings.iterrows():
     # Data cleaning
     try:
@@ -71,7 +71,7 @@ for idx, u in df_listings.iterrows():
     conn.commit()
 
 # df_condos = pd.read_csv("./data/condo_images.zip", index_col=False)
-df_condos = pd.read_csv("./data/new_data/large_condo_images.zip", index_col=False, dtype={'ZIP': str})
+df_condos = pd.read_csv("./data/2000_new_condo_images.csv", index_col=False)
 for idx, u in df_condos.iterrows():
     q = cur.execute(
         '''INSERT INTO photos (mlsnum, imgnum, features) VALUES (%s,%s,%s)''',
