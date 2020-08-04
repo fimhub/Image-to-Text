@@ -26,7 +26,6 @@ def index():
     else:
         return render_template('index.html', title='Home')
 
-
 #GET & POST /login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -54,7 +53,6 @@ def login():
     # If GET
     else:
         return render_template('login.html', title='Login', form=form)
-
 
 #GET & POST /signup
 @app.route('/register', methods=['GET', 'POST'])
@@ -86,34 +84,6 @@ def register():
     # IF POST
     else:
         return render_template('register.html', title='register', form=form)
-
-
-#GET & POST /newpost
-@app.route('/newimage', methods=['GET', 'POST'])
-def newimage():
-    # Init form
-    form = NewpostForm()
-
-    # If POST
-    if request.method == 'POST':
-
-        # Init user from poster
-        session_user = User.query.filter_by(username=session['username']).first()
-
-        # Init content from form request
-        content = request.form['content']
-
-        # Create in DB
-        new_post = Post(author=session_user.uid, content=content)
-        Db.session.add(new_post)
-        Db.session.commit()
-        
-
-        return redirect(url_for('index'))
-
-    # If GET
-    else:
-        return render_template('newimage.html', title='Newpost', form=form)
     
 @app.route('/search_page')
 def search_page():
@@ -151,7 +121,8 @@ def search():
         filtered = filtered.filter(Condo.listprice.between(priceMin, priceMax))
     if inputZip:
         filtered = filtered.filter(Condo.zip==inputZip)
-    mlsnums = [condo.mlsnum for condo in filtered.limit(100).all()]
+    # mlsnums = [condo.mlsnum for condo in filtered.limit(100).all()]
+    mlsnums = [condo.mlsnum for condo in filtered.all()]
     images = Photo.query.filter(Photo.mlsnum.in_(mlsnums)).all()
     closest = findClosest(photo.read(), images)
     session['closest'] = closest
