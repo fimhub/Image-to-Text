@@ -12,12 +12,13 @@ Link to Heroku: https://mysterious-river-00331.herokuapp.com/
 
 -**Week 5** img2txt_db created in PostgreSQL database which includes three tables username, list of condos and list of photos. Once created, 5,276 lists of condos were imported using pandas read csv, photo features generated from the model were also imported using pandas csv import function. Username are stored once the user registered to the platform.
 <img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/condos%20table.png" title="Formatted Condo Data">
-List of variables in the phonos table
 <img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/variables%20in%20phonos%20table.png" title="List of variables in the phonos table">
 
--**Week 6**Once the database and tables were created, the configuration was added to app.py to link the database & tables with front-end where the results of the search are displayed.
+-**Week 6** Once the database and tables were created, the configuration was added to app.py to link the database & tables with front-end where the results of the search are displayed.
 
--**Week 7** Frontend, backend, and model all connected.  Flavor text changed, errors fixed with logins and image uploading.  Completing process of pushing all code to heroku.
+-**Week 7** Frontend, backend, and model all connected.  Flavor text changed, errors fixed with logins and image uploading.    Updated flavor text of landing page. Fixed a bug with accessing database from search page, allowing final project video to be completed.
+<img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/Landing%20Page.png" title="Landing Page">
+<img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/Fixed%20image%20loading.png" title="Search Function">
 
 
 #Data and Model
