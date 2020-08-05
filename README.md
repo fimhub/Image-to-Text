@@ -1,4 +1,4 @@
-Link to Heroku: https://mysterious-river-00331.herokuapp.com/
+Link to Heroku, demo: https://mysterious-river-00331.herokuapp.com/ https://www.youtube.com/watch?v=HvpbtGhwpXY
 
 #Postgres, Frontend, Backend
 ---
@@ -17,6 +17,7 @@ Link to Heroku: https://mysterious-river-00331.herokuapp.com/
 -**Week 6** Once the database and tables were created, the configuration was added to app.py to link the database & tables with front-end where the results of the search are displayed.
 
 -**Week 7** Frontend, backend, and model all connected.  Flavor text changed, errors fixed with logins and image uploading.    Updated flavor text of landing page. Fixed a bug with accessing database from search page, allowing final project video to be completed.
+<a href="https://www.youtube.com/watch?v=HvpbtGhwpXY">
 <img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/Landing%20Page.png" title="Landing Page">
 <img src="https://github.com/TREXKS/Image-to-Text/blob/master/Process%20Book%20Images/Fixed%20image%20loading.png" title="Search Function">
 
