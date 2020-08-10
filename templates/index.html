@@ -1,21 +1,114 @@
-<!DOCTYPE html>
-<html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport"
-                  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Lab 2</title>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-            <!-- Styles -->
-            <link href="{{ url_for('static', filename='./css/index.css') }}" rel="stylesheet">
-        </head>
-<body>
-    <h1>Image to Text - Team 3</h1>
+{% extends "layout.html" %}
+{% block content %}
 
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #B2CDD1;">
+   <div class="jumbotron text-center">
+      <div class="container">
+         <h1>House Hunter</h1>
+         <img src="/static/img/house.jpg" alt="Notebook" style="width:70%; border-radius: 5%;
+            ">
+         <div class="content" style="margin-bottom: 5%;;">
+         </div>
+         <a href="{{ url_for('login') }}" class="btn btn-info" role="button">GET STARTED!</a>
+      </div>
+   </div>
+   <!-- Container (About Section) -->
+   <div id="about" class="container-fluid">
+      <div class="row">
+         <div class="col-sm-5" style="margin-left: 25%;">
+            <h2>Advanced Image Processing</h2>
+            <br>
+            <h4>Advanced CNN Models</h4>
+            <br>
+            <p>Using CNN Models, we will capture and match the right house for you!</p>
+         </div>
+         <div class="col-sm-4">
+            <span class="glyphicon glyphicon-picture logo"></span>
+         </div>
+      </div>
+   </div>
+   <div class="container-fluid bg-grey">
+      <div class="row">
+         <div class="col-sm-6" style="margin-left: 44%;">
+            <span class="glyphicon glyphicon-comment logo slideanim"></span>
+         </div>
+         <div class="col-sm-6" style="margin-left: 25%;">
+            <h2>Image to Text</h2>
+            <br>
+            <h4><strong>Topic:</strong>Our application when given a picture and details of the house you love most, shows you the closest that there is in the Boston area!  There are a few use cases that we can imagine- take, for example, moving across the country for a great job opportunity, but that also means moving your kids out of the house where all of their earliest memories took place.  With just a few details we can find a place that offers your family comfort and smooth transition from coast to coast.  Another situation where we see our application being used is in the hands of a capable realtor, improving their ability to find a listing that takes into account everything that the client may provide for them.</p>
+            </h4>
+            <br>
+         </div>
+      </div>
+   </div>
+   <!-- Container (Services Section) -->
+   <div id="services" class="container-fluid text-center">
+      <h2>CNN Model</h2>
+      <h4></h4>
+      <br>
+      <div class="row slideanim">
+         <div class="col-sm-4">
+            <span class="glyphicon glyphicon-ok-sign logo-small"></span>
+            <h4>Dynamic</h4>
+            <p>Our webtool builds on the groundbreaking 2014 machine learning model, VGGnet-16, and fine tunes it for our purposes with several thousand real estate listings from the Boston area.</p>
+         </div>
+         <div class="col-sm-4">
+            <span class="glyphicon glyphicon-ok-sign logo-small"></span>
+            <h4>Reliable</h4>
+            <p>We then make comparisons between the features of your searched listing against our database of listings, and show you what we think is the most similar.</p>
+         </div>
+         <div class="col-sm-4">
+            <span class="glyphicon glyphicon-ok-sign logo-small"></span>
+            <h4>Helpful</h4>
+            <p>Our hope is that there is something for you!</p>
+         </div>
+      </div>
+      <br><br>
+   </div>
+   <!-- Container (Pricing Section) -->
+
+   <!-- Image of location/map -->
+   <img src="" class="w3-image w3-greyscale-min" style="width:100%">
+   <footer class="container-fluid text-center">
+      <a href="#myPage" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+   </footer>
+   <script>
+      $(document).ready(function(){
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+      
+            // Store hash
+            var hash = this.hash;
+      
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 900, function(){
+      
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            });
+          } // End if
+        });
+      
+        $(window).scroll(function() {
+          $(".slideanim").each(function(){
+            var pos = $(this).offset().top;
+      
+            var winTop = $(window).scrollTop();
+              if (pos < winTop + 600) {
+                $(this).addClass("slide");
+              }
+          });
+        });
+      })
+   </script>
 </body>
-
-</html>
+{% endblock %}
